@@ -1,0 +1,21 @@
+<?php
+/**
+ *  BitPay - 更匿名、更安全、无需支付宝姓名和账户等个人私密信息
+ *
+ *  仅仅展示部分修改部分，不可直接替换
+ */
+
+use App\Services\Gateway\BitPayX;
+
+class Payment
+{
+    public static function getClient(){
+        $method = Config::get("payment_system");
+        switch($method){
+            case ('bitpayx'):
+                return new BitPayX(Config::get('bitpay_secret'));
+            default:
+                return 0;
+        }
+    }
+}
