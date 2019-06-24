@@ -95,6 +95,7 @@ class BitPayX extends AbstractPayment
         $pl->userid = $user->id;
         $pl->total = $price;
         $pl->tradeno = self::generateGuid();
+        $pl->datetime = time();
         $pl->save();
         $data['merchant_order_id'] = $pl->tradeno;
         $data['price_amount'] = (float)$price;
