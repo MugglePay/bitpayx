@@ -63,7 +63,7 @@
         });
     }
 
-    function f() {
+    function bitpayStatus() {
         $.ajax({
             type: "POST",
             url: "/payment/status",
@@ -83,7 +83,7 @@
                 console.log(jqXHR);
             }
         });
-        tid = setTimeout(f, 1000); //循环调用触发setTimeout
+        tid = setTimeout(bitpayStatus, 1000); //循环调用触发setTimeout
     }
 
 </script>
