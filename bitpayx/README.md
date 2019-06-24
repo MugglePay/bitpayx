@@ -20,8 +20,8 @@
   *  resources/views/material/user/bitpayx.tpl
   
   下载链接：
-  https://raw.githubusercontent.com/bitpaydev/bitpayForSSPanelV3/master/app/Services/Gateway/BitPayX.php
-  https://raw.githubusercontent.com/bitpaydev/bitpayForSSPanelV3/master/resources/views/material/user/bitpayx.tpl
+  https://raw.githubusercontent.com/bitpaydev/bitpayx/master/bitpayx/app/Services/Gateway/BitPayX.php
+  https://raw.githubusercontent.com/bitpaydev/bitpayx/master/bitpayx/resources/views/material/user/bitpayx.tpl
 
 需要修改2个配置文件。数字货币Bitpay与其他支付兼容。
 
