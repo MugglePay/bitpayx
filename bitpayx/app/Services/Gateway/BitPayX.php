@@ -109,7 +109,7 @@ class BitPayX extends AbstractPayment
 
         $data['success_url'] = Config::get('baseUrl') . '/user/payment/return?merchantTradeNo=';
         $data['success_url'] .= $pl->tradeno;
-        $data['cancel_url'] = $data['success_url'];
+        $data['cancel_url'] = Config::get('baseUrl') . '/user/code';
 
         $str_to_sign = $this->prepareSignId($pl->tradeno);
         $data['token'] = $this->sign($str_to_sign);
