@@ -1,10 +1,15 @@
 <div class="card-inner">
     <p class="card-heading">输入充值金额后，点击下方的图标进行充值</p>
+    常用充值金额：
+    <button onclick="bitpayDeposit(1)">1元</button>
+    <button onclick="bitpayDeposit(10)">10元</button>
+    <button onclick="bitpayDeposit(20)">20元</button>
     <div class="form-group form-group-label">
         <label class="floating-label" for="bitpayx-amount">金额</label>
-        <input class="form-control" id="bitpayx-amount" type="number">
+        <input class="form-control" id="bitpayx-amount" type="number" value="10">
     </div>
 </div>
+
 <div id="bitpayx-qrarea">
     <button class="btn btn-flat waves-attach" id="bitpayx-alipay-submit" name="type" onclick="selectPayment('ALIPAY')"><img
                 src="data:image/svg+xml;base64,CjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwMCAxMDAwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPG1ldGFkYXRhPiDnn6Lph4/lm77moIfkuIvovb0gOiBodHRwOi8vd3d3LnNmb250LmNuLyA8L21ldGFkYXRhPjxnPjxwYXRoIGQ9Ik05OTAsNjgwLjlWMTk4LjVDOTkwLDk0LjQsOTA1LjcsMTAsODAxLjUsMTBIMTk4LjVDOTQuNCwxMCwxMCw5NC4zLDEwLDE5OC41djYwMy4xQzEwLDkwNS42LDk0LjMsOTkwLDE5OC41LDk5MGg2MDMuMWM5Mi44LDAsMTY5LjktNjcsMTg1LjUtMTU1LjNjLTUwLTIxLjUtMjY2LjctMTE1LjEtMzc5LjQtMTY5Yy04NS44LDEwNC0xNzUuOCwxNjYuNS0zMTEuMywxNjYuNXMtMjI2LTgzLjMtMjE1LjEtMTg1LjZjNy4xLTY3LjIsNTMuMi0xNzYuNiwyNTMtMTU3LjhjMTA1LjMsMTAsMTUzLjUsMjkuNSwyMzkuNCw1Ny45YzIyLjEtNDAuNyw0MC42LTg1LjUsNTQuNi0xMzMuMkgyNDcuNXYtMzcuN2gxODguM3YtNjcuOEgyMDZ2LTQxLjVoMjI5Ljh2LTk3LjhjMCwwLDIuMi0xNS4zLDE5LTE1LjNoOTQuM3YxMTMuMWgyNDV2NDEuNWgtMjQ1djY3LjhoMTk5LjdjLTE4LjMsNzQuOC00Ni4yLDE0My41LTgxLDIwMy41QzcyNS45LDYwMC4yLDk5MCw2ODAuOSw5OTAsNjgwLjlMOTkwLDY4MC45TDk5MCw2ODAuOXogTTI4MS40LDc2Ny42Yy0xNDMuMywwLTE2NS44LTkwLjUtMTU4LjMtMTI4LjJzNDktODYuNywxMjguNi04Ni43YzkxLjUsMCwxNzMuNSwyMy40LDI3MS44LDcxLjNDNDU0LjUsNzE0LDM2OS41LDc2Ny42LDI4MS40LDc2Ny42TDI4MS40LDc2Ny42eiIgc3R5bGU9ImZpbGw6IzU2YWJlNCI+PC9wYXRoPjwvZz48L3N2Zz4gIA=="
@@ -19,8 +24,11 @@
 <script>
     var pid = 0;
 
+    function bitpayDeposit(amount) {
+        $("#bitpayx-amount").val(amount);
+    }
+
     function selectPayment(type) {
-        // TODO - make it easier - ALIPAY_WAP, ALIPAY_WEB
         var price = parseFloat($("#bitpayx-amount").val());
 
         console.log("将要使用 " + type + " 充值" + price + "元");
@@ -39,6 +47,7 @@
             return;
         }
 
+        var isMobile = /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent);
         $('#readytopay').modal();
         $("#readytopay").on('shown.bs.modal', function () {
             $.ajax({
@@ -46,6 +55,7 @@
                 'data': {
                     'price': price,
                     'type': type,
+                    'mobile': isMobile,
                 },
                 'dataType': 'json',
                 'type': "POST",
@@ -85,5 +95,7 @@
         });
         tid = setTimeout(bitpayStatus, 1000); //循环调用触发setTimeout
     }
-
+    bitpayStatus();
 </script>
+
+

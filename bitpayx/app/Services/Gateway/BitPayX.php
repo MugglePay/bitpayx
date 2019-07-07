@@ -86,6 +86,7 @@ class BitPayX extends AbstractPayment
     {
         $price = $request->getParam('price');
         $type = $request->getParam('type');
+        $mobile = $request->getParam('mobile');
         // file_put_contents(BASE_PATH.'/bitpay_purchase.log', $price . "  " . $type . "\r\n", FILE_APPEND);
         if ($price <= 0) {
             return json_encode(['errcode' => -1, 'errmsg' => '请输入合理的金额。']);
@@ -95,13 +96,14 @@ class BitPayX extends AbstractPayment
         $pl->userid = $user->id;
         $pl->total = $price;
         $pl->tradeno = self::generateGuid();
-        $pl->datetime = time();
+        $pl->datetime = time(); // date("Y-m-d H:i:s");
         $pl->save();
         $data['merchant_order_id'] = $pl->tradeno;
         $data['price_amount'] = (float)$price;
         $data['price_currency'] = 'CNY';
         if ($type === 'WECHAT' || $type === 'ALIPAY') {
             $data['pay_currency'] = $type;
+            $data['mobile'] = $mobile;
         }
         $data['title'] = '支付单号：' . $pl->tradeno;
         $data['description'] = '充值：' . $price . ' 元';
@@ -200,3 +202,5 @@ class BitPayX extends AbstractPayment
         return json_encode($return);
     }
 }
+
+
