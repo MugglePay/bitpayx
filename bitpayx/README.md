@@ -7,7 +7,7 @@
 
  1. 先跟管理员获取邀请码
  2. 注册登录[商家后台](https://merchants.mugglepay.com)
- 3. 选择"个人设置"->“API认证”->“后台服务器”，获得后端认证码（请注意，是”后端“）。
+ 3. 选择"个人设置"->“API认证”->“用在后台服务器（SSP等php后台）”，点击“添加密钥”，获得后端认证码（请注意，是”后端“）。
 
 ## 认证审核
  请去个人设置中，完成认证工作，点亮笑脸☺。<br />
@@ -32,6 +32,8 @@
 #取值 none | codepay | trimepay | f2fpay | chenAlipay | paymentwall | spay |tomatopay | bitpayx
 
 $System_Config['payment_system']='bitpayx';
+
+#请注意bitpay_secret 这个参数可能已经在config中，注意添加不要重复覆盖。
 $System_Config['bitpay_secret']='XXXX';
 
 ```
