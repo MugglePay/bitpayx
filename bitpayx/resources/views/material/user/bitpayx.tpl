@@ -1,9 +1,9 @@
 <div class="card-inner">
     <p class="card-heading">输入充值金额后，点击下方的图标进行充值</p>
     常用充值金额：
-    <button onclick="bitpayDeposit(1)">1元</button>
     <button onclick="bitpayDeposit(10)">10元</button>
     <button onclick="bitpayDeposit(20)">20元</button>
+    <button onclick="bitpayDeposit(30)">30元</button>
     <div class="form-group form-group-label">
         <label class="floating-label" for="bitpayx-amount">金额</label>
         <input class="form-control" id="bitpayx-amount" type="number" value="10">
