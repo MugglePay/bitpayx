@@ -153,7 +153,7 @@ class BitPayX extends AbstractPayment
         $isPaid = $data !== null && $data['status'] !== null && $data['status'] === 'PAID';
         // file_put_contents(BASE_PATH.'/bitpay_notify.log', $resultVerify."\r\n".$isPaid."\r\n", FILE_APPEND);
         if ($resultVerify && $isPaid) {
-            $this->postPayment($data['merchant_order_id'], 'BitPayX');
+            $this->postPayment($data['merchant_order_id'], 'BitPayX ' . $data['merchant_order_id']);
             // echo 'SUCCESS';
             $return = [];
             $return['status'] = 200;
