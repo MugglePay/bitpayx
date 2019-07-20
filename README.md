@@ -4,6 +4,18 @@
 如果需要[在线客服聊天](https://bitpay.dev) 以及 数字货币匿名支付[常见问题](https://github.com/bitpaydev/docs/blob/master/FAQ.md)。[技术交流群，或者获取邀请码](https://t.me/joinchat/GLKSKhUnE4GvEAPgqtChAQ)。
 
 
+## 添加流程
+如果发现添加错误，例如充值页面显示Slim Application Error，请严格按照这几部操作。
+
+ 1. 在添加任何东西之前，确保你的用户充值页面可以访问。（如果安全起见，可以备份代码）。
+ 2. 新增2个文件（BitPayX.php， bitpayx.tpl），请放入一模一样的位置。确保你的用户充值页面可以访问。
+ 3. Payment.php 修改3行代码。修改完后，确保你的用户充值页面可以访问。
+ 4. .config.php 里面的参数 payment_system 设置为 bitpayx.
+ 5. 付款，然后完成整个流程。
+
+其中任意一步失败，请回退上一步，并且联系管理人员。
+
+
 ## 获取授权(如果Bitpay操作过，请忽略)
 
  1. 先跟管理员获取邀请码
