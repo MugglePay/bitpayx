@@ -79,3 +79,7 @@ $System_Config['bitpay_secret']='XXXX';
     }
 
 ```
+效果如下
+<img src="https://cdn.mugglepay.com/docs/pics/payment-demo.jpg" />
+
+
