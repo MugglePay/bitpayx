@@ -24,6 +24,11 @@
 <script>
     var pid = 0;
 
+    var isMobile = /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent);
+    if (isMobile) {
+        $("#bitpayx-wechat-submit").hide();
+    }
+
     function bitpayDeposit(amount) {
         $("#bitpayx-amount").val(amount);
     }
