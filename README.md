@@ -83,3 +83,9 @@ $System_Config['bitpay_secret']='XXXX';
 <img src="https://cdn.mugglepay.com/docs/pics/payment-demo.jpg" />
 
 
+## 进阶
+
+使用国际支付宝教程如下 （主要针对国外网站/产品，收取支付宝的人民币的国外商户）。
+https://github.com/bitpaydev/bitpayx/blob/master/README-AlipayGlobal.md
+
+
