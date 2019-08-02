@@ -105,6 +105,10 @@ class BitPayX extends AbstractPayment
             $data['pay_currency'] = $type;
             $data['mobile'] = $mobile;
         }
+        if ($type === 'ALIGLOBAL') {
+            $data['pay_currency'] = $type;
+            $data['mobile'] = $mobile;
+        }
         $data['title'] = '支付单号：' . $pl->tradeno;
         $data['description'] = '充值：' . $price . ' 元';
         $data['callback_url'] = Config::get('baseUrl') . '/payment/notify';
