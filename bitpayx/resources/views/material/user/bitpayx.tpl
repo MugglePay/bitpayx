@@ -80,12 +80,12 @@
                             if (type === 'ALIPAY' || type === 'ALIGLOBAL') {
                                 typeText = '请使用支付宝扫码';
                                 if (isMobile) {
-                                    typeText = '长按二维码，打开"网页"，会唤起支付宝';
+                                    typeText = '手机可点击二维码唤起支付';
                                 }
                             } else if (type === 'WECHAT') {
                                 typeText = '请使用微信扫码';
                             }
-                            var html = '<p>' + typeText + '</p><img style="width: 200px" src="' + data.qrcode_url + '" />'
+                            var html = '<p>' + typeText + '</p><a href="' + data.click_url + '"><img style="width: 200px" src="' + data.qrcode_url + '" /></a>';
                             $("#bitpayx-qrcode").html(html);
                         }
                         else {

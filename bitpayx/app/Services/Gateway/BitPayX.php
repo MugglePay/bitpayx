@@ -120,6 +120,7 @@ class BitPayX extends AbstractPayment
         // file_put_contents(BASE_PATH.'/bitpay_purchase.log', json_encode($data)."\r\n", FILE_APPEND);
         // file_put_contents(BASE_PATH.'/bitpay_purchase.log', json_encode($result)."\r\n", FILE_APPEND);
         $qrcode_url = '';
+        $click_url = '';
         if ($result['status'] === 200 || $result['status'] === 201) {
             $result['payment_url'] .= '&lang=zh';
             if ($result['invoice'] && $result['invoice']['pay_currency']) {
@@ -127,15 +128,18 @@ class BitPayX extends AbstractPayment
                 $order_id = $result['invoice']['order_id'];
                 $base_url = 'https://www.zhihu.com/qrcode?url=';
                 if ($pay_currency === 'ALIPAY') {
-                    $qrcode_url = $base_url . 'https://qrcode.icedropper.com/invoices/?id=' . $order_id . '&type=ALIPAY';
+                    $click_url = 'https://qrcode.icedropper.com/invoices/?id=' . $order_id . '&type=ALIPAY';
+                    $qrcode_url = $base_url . $click_url;
                 } else if ($pay_currency === 'ALIGLOBAL') {
-                    $qrcode_url = $base_url . 'https://qrcode.icedropper.com/invoices/?id=' . $order_id . '&type=ALIGLOBAL';
+                    $click_url = 'https://qrcode.oceanlunettes.com/invoices/?id=' . $order_id . '&type=ALIGLOBAL';
+                    $qrcode_url = $base_url . $click_url;
                 } else if ($pay_currency === 'WECHAT') {
                     $qrcode_url = $base_url . $result['invoice']['qrcode'];
+                    $click_url = "#";
                 }
             }
             // file_put_contents(BASE_PATH.'/bitpay_purchase.log', json_encode($result) . "\r\n" . $qrcode_url . "\r\n", FILE_APPEND);
-            return json_encode(array('url' => $result['payment_url'], 'qrcode_url' => $qrcode_url, 'errcode' => 0, 'pid' => $pl->tradeno));
+            return json_encode(array('url' => $result['payment_url'], 'qrcode_url' => $qrcode_url, 'click_url' => $click_url, 'errcode' => 0, 'pid' => $pl->tradeno));
         }
         return json_encode(['errcode' => -1, 'errmsg' => $result . error]);
     }
