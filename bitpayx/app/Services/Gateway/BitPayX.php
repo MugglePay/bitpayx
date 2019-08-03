@@ -119,9 +119,23 @@ class BitPayX extends AbstractPayment
         $result['pid'] = $pl->tradeno;
         // file_put_contents(BASE_PATH.'/bitpay_purchase.log', json_encode($data)."\r\n", FILE_APPEND);
         // file_put_contents(BASE_PATH.'/bitpay_purchase.log', json_encode($result)."\r\n", FILE_APPEND);
+        $qrcode_url = '';
         if ($result['status'] === 200 || $result['status'] === 201) {
             $result['payment_url'] .= '&lang=zh';
-            return json_encode(array('url' => $result['payment_url'], 'errcode' => 0, 'pid' => $pl->id));
+            if ($result['invoice'] && $result['invoice']['pay_currency']) {
+                $pay_currency = $result['invoice']['pay_currency'];
+                $order_id = $result['invoice']['order_id'];
+                $base_url = 'https://www.zhihu.com/qrcode?url=';
+                if ($pay_currency === 'ALIPAY') {
+                    $qrcode_url = $base_url . 'https://qrcode.icedropper.com/invoices/?id=' . $order_id . '&type=ALIPAY';
+                } else if ($pay_currency === 'ALIGLOBAL') {
+                    $qrcode_url = $base_url . 'https://qrcode.icedropper.com/invoices/?id=' . $order_id . '&type=ALIGLOBAL';
+                } else if ($pay_currency === 'WECHAT') {
+                    $qrcode_url = $base_url . $result['invoice']['qrcode'];
+                }
+            }
+            // file_put_contents(BASE_PATH.'/bitpay_purchase.log', json_encode($result) . "\r\n" . $qrcode_url . "\r\n", FILE_APPEND);
+            return json_encode(array('url' => $result['payment_url'], 'qrcode_url' => $qrcode_url, 'errcode' => 0, 'pid' => $pl->id));
         }
         return json_encode(['errcode' => -1, 'errmsg' => $result . error]);
     }
