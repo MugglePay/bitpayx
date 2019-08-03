@@ -101,9 +101,13 @@ class BitPayX extends AbstractPayment
         $data['merchant_order_id'] = $pl->tradeno;
         $data['price_amount'] = (float)$price;
         $data['price_currency'] = 'CNY';
-        if ($type === 'WECHAT' || $type === 'ALIPAY') {
+        if ($type === 'WECHAT') {
             $data['pay_currency'] = $type;
             $data['mobile'] = $mobile;
+        }
+        if ($type === 'ALIGLOBAL' || $type === 'ALIPAY') {
+            $data['pay_currency'] = $type;
+            $data['mobile'] = true;
         }
         $data['title'] = '支付单号：' . $pl->tradeno;
         $data['description'] = '充值：' . $price . ' 元';
