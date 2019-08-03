@@ -21,6 +21,7 @@
                 src="http://bitpay.dev/img/mpay-zh.png"
                 height="64"></button>
 </div>
+<div id="bitpayx-qrcode" style="padding-left: 20px;"></div>
 <script>
     var pid = 0;
 
@@ -54,7 +55,7 @@
 
         var isMobile = /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent);
         $('#readytopay').modal();
-        $("#readytopay").on('shown.bs.modal', function () {
+        // $("#readytopay").on('shown.bs.modal', function () {
             $.ajax({
                 'url': "/user/payment/purchase",
                 'data': {
@@ -67,15 +68,31 @@
                 success: function (data) {
                     if (data.errcode == 0) {
                         $("#readytopay").modal('hide');
-                        $("#msg").html("正在跳转到支付页面...");
-                        window.location.href = data.url;
+
+                        if (data.qrcode_url && data.qrcode_url.length > 1) {
+                            var typeText = '';
+                            if (type === 'ALIPAY' || type === 'ALIGLOBAL') {
+                                typeText = '请使用支付宝扫码';
+                                if (isMobile) {
+                                    typeText = '长按二维码，打开"网页"，会唤起支付宝';
+                                }
+                            } else if (type === 'WECHAT') {
+                                typeText = '请使用微信扫码';
+                            }
+                            var html = '<p>' + typeText + '</p><img style="width: 200px" src="' + data.qrcode_url + '" />'
+                            $("#bitpayx-qrcode").html(html);
+                        }
+                        else {
+                            $("#msg").html("正在跳转到支付页面...");
+                            window.location.href = data.url;
+                        }
                     } else {
                         $("#result").modal();
                         $("#msg").html(data.errmsg);
                     }
                 }
             });
-        });
+        // });
     }
 
     function bitpayStatus() {
