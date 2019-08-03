@@ -5,6 +5,8 @@
 请务先了解结算时间以及费率。
 
 ## 代码修改
+如果你已经升级使用了内嵌二维码，恭喜你。只需要code.tpl改1行就行。把ALIPAY改成功ALIGLOBAL。
+
 https://github.com/bitpaydev/bitpayx/compare/alipay-global?expand=1
 <br />
 <img src="https://cdn.mugglepay.com/docs/pics/alipay-diff.png" />
