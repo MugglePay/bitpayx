@@ -44,14 +44,14 @@
         var price = parseFloat($("#bitpayx-amount").val());
 
         console.log("将要使用 " + type + " 充值" + price + "元");
-        if (isNaN(price) || price < 1 || price >= 500) {
+        if (isNaN(price) || price < 10 || price >= 500) {
             $("#readytopay").modal('hide');
             $("#result").modal();
             if (isNaN(price)) {
                 $("#msg").html("请输入正确的金额!");
             }
-            else if (price < 1) {
-                $("#msg").html("请不要充值低于1元。");
+            else if (price < 10) {
+                $("#msg").html("请不要充值低于10元。");
             }
             else if (price > 500) {
                 $("#msg").html("请不要充值超过500元。");
