@@ -145,7 +145,7 @@ class BitPayX extends AbstractPayment
             // file_put_contents(BASE_PATH.'/bitpay_purchase.log', json_encode($result) . "\r\n" . $qrcode_url . "\r\n", FILE_APPEND);
             return json_encode(array('url' => $result['payment_url'], 'qrcode_url' => $qrcode_url, 'click_url' => $click_url, 'errcode' => 0, 'pid' => $pl->tradeno));
         }
-        return json_encode(['errcode' => -1, 'errmsg' => $result . error]);
+        return json_encode(['errcode' => -1, 'errmsg' => $result]);
     }
 
     public function notify($request, $response, $args)
