@@ -1,7 +1,6 @@
 # BitPayX 
 
 
-如果需要[在线客服聊天](https://bitpay.dev) 以及 数字货币匿名支付[常见问题](https://github.com/bitpaydev/docs/blob/master/FAQ.md)。[技术交流群，或者获取邀请码](https://t.me/joinchat/GLKSKhUnE4GvEAPgqtChAQ)。
 
 
 ## 添加流程
@@ -20,7 +19,7 @@
 
  1. 先跟管理员获取邀请码
  2. 注册登录[商家后台](https://merchants.mugglepay.com)
- 3. 选择"个人设置"->“API认证”->“用在后台服务器（SSP等php后台）”，点击“添加密钥”，获得后端认证码（请注意，是”后端“）。
+ 3. 选择"个人设置"->“API认证”->“用在后台服务器”，点击“添加密钥”，获得后端认证码（请注意，是”后端“）。
 <img src="https://cdn.mugglepay.com/docs/whmcs/getapi.png" />
 
 
@@ -51,7 +50,7 @@
 
 ```
 # 修改： config/.config.php
-#取值 none | codepay | trimepay | f2fpay | chenAlipay | paymentwall | spay |tomatopay | bitpayx
+#取值 none | codepay |  bitpayx
 
 $System_Config['payment_system']='bitpayx';
 
@@ -83,9 +82,5 @@ $System_Config['bitpay_secret']='XXXX';
 <img src="https://cdn.mugglepay.com/docs/pics/payment-demo.jpg" />
 
 
-## 进阶
-
-使用国际支付宝教程如下 （主要针对国外网站/产品，收取支付宝的人民币的国外商户）。
-https://github.com/bitpaydev/bitpayx/blob/master/README-AlipayGlobal.md
 
 
