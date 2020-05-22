@@ -132,7 +132,7 @@ class BitPayX extends AbstractPayment
                 $order_id = $result['invoice']['order_id'];
                 $base_url = 'https://www.zhihu.com/qrcode?url=';
                 if ($pay_currency === 'ALIPAY') {
-                    $click_url = 'https://qrcode.icedropper.com/invoices/?id=' . $order_id . '&type=ALIPAY';
+                    $click_url = 'https://qrcode.mugglepay.com/invoices/?id=' . $order_id . '&type=ALIPAY';
                     $qrcode_url = $base_url . $click_url;
                 } else if ($pay_currency === 'ALIGLOBAL') {
                     $click_url = 'https://qrcode.oceanlunettes.com/invoices/?id=' . $order_id . '&type=ALIGLOBAL';
