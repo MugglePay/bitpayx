@@ -20,6 +20,9 @@
                 <button class="btn btn-flat waves-attach" id="bitpayx-crypto-submit" name="type" onclick="selectPayment('CRYPTO')"><img
                             src="https://dcdn.mugglepay.com/pay/crypto.jpg"
                             height="64"></button>
+                <button class="btn btn-flat waves-attach" id="bitpayx-creditcard-submit" name="type" onclick="selectPayment('CARD')"><img
+                            src="https://dcdn.mugglepay.com/pay/creditcard.jpg"
+                            height="64"></button>
             </div>
         </div>
         <div class="col-lg-6 col-md-6">
